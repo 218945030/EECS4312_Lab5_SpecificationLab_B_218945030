@@ -69,6 +69,6 @@ def test4 ():
 
 def test5 ():
     resources = {'gpu': 5}
-    requests = [{'gpu': 3}, ['mem', 1]]  # malformed request
+    requests = [{'gpu': 3}, ['mem', 1]]
     with pytest.raises(ValueError):
         is_allocation_feasible(resources, requests)
