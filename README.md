@@ -1,6 +1,6 @@
 ## TODO:
-## Student Name:
-## Student ID: 
+## Student Name: Jonah Ottini
+## Student ID: 218945030
 
 # Is Resource Allocation Feasible Lab Repository
 
