@@ -54,7 +54,7 @@ def test1 ():
 
 def test2 ():
     resources = {'gpu': 15}
-    requests = [{'gpu': 3}, {'gpu': 4}, {'gpu': 11}, {'gpu': 16}]
+    requests = [{'gpu': 3}, {'gpu': 4}, {'gpu': 16}]
     assert is_allocation_feasible(resources, requests) is False
 
 def test3 ():
