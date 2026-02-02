@@ -1,5 +1,5 @@
-## Student Name:
-## Student ID: 
+## Student Name: Jonah Ottini
+## Student ID: 218945030
 
 """
 Public test suite for the meeting slot suggestion exercise.
@@ -46,3 +46,29 @@ def test_non_dict_request_raises():
         is_allocation_feasible(resources, requests)
 
 """TODO: Add at least 5 additional test cases to test your implementation."""
+
+def test1 ():
+    resources = {'gpu': 15}
+    requests = [{'gpu': 3}, {'gpu': 4}, {'gpu': 6}]
+    assert is_allocation_feasible(resources, requests) is True
+
+def test2 ():
+    resources = {'gpu': 15}
+    requests = [{'gpu': 3}, {'gpu': 4}, {'gpu': 11}, {'gpu': 16}]
+    assert is_allocation_feasible(resources, requests) is False
+
+def test3 ():
+    resources = {'gpu': 15, 'cpu': 10}
+    requests = [{'cpu': 3}, {'cpu': 4}, {'gpu': 11}]
+    assert is_allocation_feasible(resources, requests) is True
+
+def test4 ():
+    resources = {'gpu': 15}
+    requests = [{'cpu': 9}, {'gpu': 1}]
+    assert is_allocation_feasible(resources, requests) is False
+
+def test5 ():
+    resources = {'gpu': 5}
+    requests = [{'gpu': 3}, ['mem', 1]]  # malformed request
+    with pytest.raises(ValueError):
+        is_allocation_feasible(resources, requests)
