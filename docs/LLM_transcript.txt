@@ -1,10 +1,94 @@
 ## Student Name:
 ## Student ID: 
 
-Prompt 1: "Copy paste your question"
-LLM Response 1: "Copy paste LLMs response"
+Prompt 1: Can you finish the implementation of this python function
+LLM Response 1:
+
+from typing import Dict, List, Union
+
+Number = Union[int, float]
+
+
+def is_allocation_feasible(
+    resources: Dict[str, Number],
+    requests: List[Dict[str, Number]]
+) -> bool:
+    """
+    Determine whether a set of resource requests can be satisfied given limited capacities.
+    """
+
+    # Track total usage per resource
+    usage: Dict[str, Number] = {r: 0 for r in resources}
+
+    for request in requests:
+        for resource, amount in request.items():
+            # Resource must exist
+            if resource not in resources:
+                return False
+
+            # Requested amount must be non-negative
+            if amount < 0:
+                return False
+
+            usage[resource] += amount
+
+            # Early exit if capacity exceeded
+            if usage[resource] > resources[resource]:
+                return False
+
+    return True
+
 
 --------------------------------------------------
-Prompt 2: "Copy paste your question"
+Prompt 2:
+
+Modify the code so it passes this test def test_non_dict_request_raises():
+    # Non-Dict Request Raises Error
+    # Constraint: structural validation
+    # Reason: request must be a dict
+    resources = {'cpu': 5}
+    requests = [{'cpu': 2}, ['mem', 1]]  # malformed request
+    with pytest.raises(ValueError):
+        is_allocation_feasible(resources, requests)
+
 LLM Response 2: "Copy paste LLMs response"
+
+from typing import Dict, List, Union
+
+Number = Union[int, float]
+
+
+def is_allocation_feasible(
+    resources: Dict[str, Number],
+    requests: List[Dict[str, Number]]
+) -> bool:
+    """
+    Determine whether a set of resource requests can be satisfied given limited capacities.
+    """
+
+    # Track total usage per resource
+    usage: Dict[str, Number] = {r: 0 for r in resources}
+
+    for request in requests:
+        # Structural validation: each request must be a dict
+        if not isinstance(request, dict):
+            raise ValueError("Each request must be a dictionary")
+
+        for resource, amount in request.items():
+            # Resource must exist
+            if resource not in resources:
+                return False
+
+            # Requested amount must be non-negative
+            if amount < 0:
+                return False
+
+            usage[resource] += amount
+
+            # Capacity exceeded
+            if usage[resource] > resources[resource]:
+                return False
+
+    return True
+
 --------------------------------------------------
