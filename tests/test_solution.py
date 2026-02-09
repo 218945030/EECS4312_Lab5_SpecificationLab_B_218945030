@@ -72,3 +72,13 @@ def test5 ():
     requests = [{'gpu': 3}, {'mem', 1}]
     with pytest.raises(ValueError):
         is_allocation_feasible(resources, requests)
+
+def test6():
+    resources = {'gpu': 10}
+    requests = [{'gpu': 9}, {'gpu': 1}]
+    assert is_allocation_feasible(resources, requests) is False
+
+def test7():
+    resources = {'gpu': 11}
+    requests = [{'gpu': 9}, {'gpu': 1}]
+    assert is_allocation_feasible(resources, requests) is True

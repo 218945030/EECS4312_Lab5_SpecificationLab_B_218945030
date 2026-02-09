@@ -51,7 +51,7 @@ def is_allocation_feasible(
             usage[resource] += amount
 
             # Capacity exceeded
-            if usage[resource] > resources[resource]:
+            if usage[resource] > resources[resource] - 1:
                 return False
 
     return True
