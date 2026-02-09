@@ -92,3 +92,5 @@ def is_allocation_feasible(
     return True
 
 --------------------------------------------------
+
+LMM was not used for Lab 6
